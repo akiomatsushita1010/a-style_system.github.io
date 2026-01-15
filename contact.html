@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ | A-style System</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+    body {
+        font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        color: #333;
+        line-height: 1.8;
+    }
+
+    /* ▼ 背景写真を削除したヘッダー */
+    header {
+        background: #ffffff;
+        position: relative;
+        padding: 18px 0;
+        border-bottom: 1px solid #e5e5e5;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 1.9em;
+        margin: 0;
+        font-weight: 700;
+        color: #003f7f;
+    }
+
+    /* ▼ PC用中央ナビ */
+    nav.pc-nav {
+        margin-top: 12px;
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        transition: 0.3s;
+    }
+
+    nav.pc-nav a {
+        text-decoration: none;
+        color: #003f7f;
+        font-weight: 600;
+        padding: 6px 10px;
+        transition: 0.2s;
+    }
+
+    nav.pc-nav a:hover {
+        color: #001f40;
+    }
+
+    /* ▼ スマホでは中央ナビ非表示 */
+    @media (max-width: 600px) {
+        nav.pc-nav {
+            display: none;
+        }
+    }
+
+    /* ▼ ハンバーガーメニュー（PC・スマホ共通） */
+    .hamburger {
+        position: absolute;
+        right: 20px;
+        top: 22px;
+        font-size: 1.8em;
+        color: #003f7f;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .hamburger.active i {
+        transform: rotate(90deg);
+    }
+
+    /* ▼ スライドメニュー */
+    #mobile-menu {
+        position: fixed;
+        right: -260px;
+        top: 0;
+        width: 240px;
+        height: 100vh;
+        background: #ffffff;
+        border-left: 1px solid #dce6f5;
+        box-shadow: -4px 0 12px rgba(0,0,0,0.15);
+        padding-top: 80px;
+        transition: 0.35s ease;
+        z-index: 30;
+    }
+
+    #mobile-menu.open {
+        right: 0;
+    }
+
+    #mobile-menu a {
+        display: block;
+        padding: 14px 20px;
+        color: #003f7f;
+        text-decoration: none;
+        font-weight: 600;
+        border-bottom: 1px solid #eef3fb;
+    }
+
+    #mobile-menu a:hover {
+        background: #f0f6ff;
+    }
+
+    /* ▼ ページタイトル */
+    .page-title {
+        text-align: center;
+        padding: 50px 20px 20px;
+    }
+
+    .page-title h2 {
+        font-size: 2.2em;
+        color: #003f7f;
+        margin-bottom: 10px;
+    }
+
+    .page-title p {
+        font-size: 1.1em;
+        color: #555;
+    }
+
+    /* ▼ フォーム */
+    .form-wrapper {
+        max-width: 800px;
+        margin: 0 auto 60px;
+        padding: 0 20px;
+    }
+
+    .form-box {
+        background: #ffffff;
+        padding: 30px 25px;
+        border-radius: 12px;
+        border: 1px solid #dce6f5;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .form-row {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: 600;
+        color: #003f7f;
+        margin-bottom: 6px;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #dce6f5;
+        border-radius: 8px;
+        font-size: 1em;
+        background: #fff;
+    }
+
+    textarea {
+        height: 160px;
+        resize: vertical;
+    }
+
+    .error-message {
+        color: #d60000;
+        font-size: 0.9em;
+        margin-top: 4px;
+        display: none;
+    }
+
+    button {
+        background: #005bac;
+        color: #fff;
+        padding: 14px 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.2em;
+        cursor: pointer;
+        width: 100%;
+        transition: 0.2s;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background: #003f7f;
+    }
+
+    footer {
+        background: #005bac;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 40px;
+    }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>A-style System</h1>
+
+    <!-- ▼ ハンバーガー -->
+    <div class="hamburger" id="hamburger">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- ▼ PC用中央ナビ -->
+    <nav class="pc-nav" id="pc-nav">
+        <a href="index.html">ホーム</a>
+        <a href="company.html">会社概要</a>
+        <a href="greeting.html">代表挨拶</a>
+        <a href="services-detail.html">サービス詳細</a>
+        <a href="contact.html">お問い合わせ</a>
+    </nav>
+
+    <!-- ▼ スライドメニュー -->
+    <nav id="mobile-menu">
+        <a href="index.html">ホーム</a>
+        <a href="company.html">会社概要</a>
+        <a href="greeting.html">代表挨拶</a>
+        <a href="services-detail.html">サービス詳細</a>
+        <a href="contact.html">お問い合わせ</a>
+    </nav>
+</header>
+
+<div class="page-title">
+    <h2>お問い合わせ</h2>
+    <p>ご相談・お見積りなど、お気軽にお問い合わせください。</p>
+</div>
+
+<div class="form-wrapper">
+    <div class="form-box">
+        <form id="contactForm" action="send.php" method="post">
+
+            <div class="form-row">
+                <label for="name">お名前</label>
+                <input type="text" id="name" name="name">
+                <div class="error-message">これは必須フィールドです</div>
+            </div>
+
+            <div class="form-row">
+                <label for="email">メールアドレス</label>
+                <input type="email" id="email" name="email">
+                <div class="error-message">これは必須フィールドです</div>
+            </div>
+
+            <div class="form-row">
+                <label for="subject">件名</label>
+                <input type="text" id="subject" name="subject">
+            </div>
+
+            <div class="form-row">
+                <label for="message">お問い合わせ内容</label>
+                <textarea id="message" name="message"></textarea>
+                <div class="error-message">これは必須フィールドです</div>
+            </div>
+
+            <button type="submit">送信する</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    © 2026 A-style System
+</footer>
+
+<script>
+const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobile-menu");
+const pcNav = document.getElementById("pc-nav");
+
+// ▼ ハンバーガー開閉
+hamburger.addEventListener("click", function() {
+    const isOpen = mobileMenu.classList.toggle("open");
+    hamburger.classList.toggle("active");
+
+    if (window.innerWidth > 600) {
+        pcNav.style.display = isOpen ? "none" : "flex";
+    }
+});
+
+// ▼ メニュー内リンククリックで閉じる
+document.querySelectorAll("#mobile-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        hamburger.classList.remove("active");
+
+        if (window.innerWidth > 600) {
+            pcNav.style.display = "flex";
+        }
+    });
+});
+
+// ▼ メニュー外クリックで閉じる
+document.addEventListener("click", (e) => {
+    const isMenu = mobileMenu.contains(e.target);
+    const isHamburger = hamburger.contains(e.target);
+
+    if (!isMenu && !isHamburger) {
+        mobileMenu.classList.remove("open");
+        hamburger.classList.remove("active");
+
+        if (window.innerWidth > 600) {
+            pcNav.style.display = "flex";
+        }
+    }
+});
+
+// ▼ 必須チェック
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    let valid = true;
+
+    const fields = [
+        { id: "name", required: true },
+        { id: "email", required: true },
+        { id: "message", required: true }
+    ];
+
+    fields.forEach(field => {
+        const input = document.getElementById(field.id);
+        const error = input.nextElementSibling;
+
+        if (field.required && input.value.trim() === "") {
+            error.style.display = "block";
+            valid = false;
+        } else {
+            error.style.display = "none";
+        }
+    });
+
+    if (!valid) {
+        e.preventDefault();
+    }
+});
+</script>
+
+</body>
+</html>

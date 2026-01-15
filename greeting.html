@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代表挨拶 | A-style System</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+    body {
+        font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        color: #333;
+        line-height: 1.8;
+    }
+
+    header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e5e5;
+        padding: 18px 0;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 1.9em;
+        margin: 0;
+        font-weight: 700;
+        color: #005bac;
+    }
+
+    /* ▼ PC用中央ナビ */
+    nav.pc-nav {
+        margin-top: 12px;
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        transition: 0.3s;
+    }
+
+    nav.pc-nav a {
+        text-decoration: none;
+        color: #005bac;
+        font-weight: 600;
+        padding: 6px 10px;
+        transition: 0.2s;
+    }
+
+    nav.pc-nav a:hover {
+        color: #003f7f;
+    }
+
+    /* ▼ スマホでは中央ナビ非表示 */
+    @media (max-width: 600px) {
+        nav.pc-nav {
+            display: none;
+        }
+    }
+
+    /* ▼ ハンバーガーメニュー */
+    .hamburger {
+        position: absolute;
+        right: 20px;
+        top: 22px;
+        font-size: 1.8em;
+        color: #005bac;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .hamburger.active i {
+        transform: rotate(90deg);
+    }
+
+    /* ▼ スライドメニュー */
+    #mobile-menu {
+        position: fixed;
+        right: -260px;
+        top: 0;
+        width: 240px;
+        height: 100vh;
+        background: #ffffff;
+        border-left: 1px solid #dce6f5;
+        box-shadow: -4px 0 12px rgba(0,0,0,0.15);
+        padding-top: 80px;
+        transition: 0.35s ease;
+        z-index: 30;
+    }
+
+    #mobile-menu.open {
+        right: 0;
+    }
+
+    #mobile-menu a {
+        display: block;
+        padding: 14px 20px;
+        color: #005bac;
+        text-decoration: none;
+        font-weight: 600;
+        border-bottom: 1px solid #eef3fb;
+    }
+
+    #mobile-menu a:hover {
+        background: #f0f6ff;
+    }
+
+    /* ▼ ヒーロー部分 */
+    .hero {
+        width: 100%;
+        padding: 40px 20px;
+        background: #f2f7ff;
+        border-bottom: 1px solid #dce6f5;
+        text-align: center;
+    }
+
+    .hero h2 {
+        font-size: 2.0em;
+        color: #003f7f;
+        margin: 0 0 5px 0;
+    }
+
+    .hero p {
+        margin: 0;
+        font-size: 1.05em;
+        color: #333;
+    }
+
+    .section {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .section h3 {
+        font-size: 1.7em;
+        color: #005bac;
+        border-left: 3px solid #005bac;
+        padding-left: 10px;
+        margin-bottom: 20px;
+    }
+
+    .message-box {
+        background: #ffffff;
+        padding: 25px 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        line-height: 1.9;
+    }
+
+    footer {
+        background: #005bac;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 50px;
+    }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>A-style System</h1>
+
+    <!-- ▼ ハンバーガー -->
+    <div class="hamburger" id="hamburger">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- ▼ PC用中央ナビ -->
+    <nav class="pc-nav" id="pc-nav">
+        <a href="index.html">ホーム</a>
+        <a href="company.html">会社概要</a>
+        <a href="greeting.html">代表挨拶</a>
+        <a href="services-detail.html">サービス詳細</a>
+        <a href="contact.html">お問い合わせ</a>
+    </nav>
+
+    <!-- ▼ スライドメニュー -->
+    <nav id="mobile-menu">
+        <a href="index.html">ホーム</a>
+        <a href="company.html">会社概要</a>
+        <a href="greeting.html">代表挨拶</a>
+        <a href="services-detail.html">サービス詳細</a>
+        <a href="contact.html">お問い合わせ</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>代表挨拶</h2>
+    <p>A-style System の想いをお伝えします。</p>
+</section>
+
+<div class="section">
+    <h3>ご挨拶</h3>
+
+    <div class="message-box">
+        <p>
+            A-style System は、「お客様に寄り添うパートナー」であることを大切にしています。<br>
+            現場の課題は企業ごとに異なり、同じ解決策が通用するとは限りません。<br><br>
+
+            私たちは、まず “しっかり話を聞くこと” を重視し、<br>
+            その上で最適な防犯・ネットワーク・IT 環境をご提案しています。<br><br>
+
+            小さなお困りごとでも気軽に相談できる存在として、<br>
+            そして安心して任せられるパートナーとして、<br>
+            これからも誠実にサポートを続けてまいります。<br><br>
+
+            今後とも A-style System をよろしくお願いいたします。
+        </p>
+
+        <p style="text-align:right; margin-top:20px;">
+            A-style System<br>
+            代表　阿形晃人
+        </p>
+    </div>
+</div>
+
+<footer>
+    © 2026 A-style System
+</footer>
+
+<script>
+const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobile-menu");
+const pcNav = document.getElementById("pc-nav");
+
+// ▼ ハンバーガー開閉
+hamburger.addEventListener("click", function() {
+    const isOpen = mobileMenu.classList.toggle("open");
+    hamburger.classList.toggle("active");
+
+    if (window.innerWidth > 600) {
+        pcNav.style.display = isOpen ? "none" : "flex";
+    }
+});
+
+// ▼ メニュー内リンククリックで閉じる
+document.querySelectorAll("#mobile-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        hamburger.classList.remove("active");
+
+        if (window.innerWidth > 600) {
+            pcNav.style.display = "flex";
+        }
+    });
+});
+
+// ▼ メニュー外クリックで閉じる
+document.addEventListener("click", (e) => {
+    const isMenu = mobileMenu.contains(e.target);
+    const isHamburger = hamburger.contains(e.target);
+
+    if (!isMenu && !isHamburger) {
+        mobileMenu.classList.remove("open");
+        hamburger.classList.remove("active");
+
+        if (window.innerWidth > 600) {
+            pcNav.style.display = "flex";
+        }
+    }
+});
+</script>
+
+</body>
+</html>

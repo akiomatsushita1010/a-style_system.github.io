@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-style System</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+    body {
+        font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        color: #333;
+        line-height: 1.8;
+    }
+
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e5e5;
+        padding: 18px 0;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        animation: fadeUp 0.8s ease;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 1.9em;
+        margin: 0;
+        font-weight: 700;
+        color: #005bac;
+    }
+
+    /* ▼ PC用中央ナビ（PCでは表示、スマホでは非表示） */
+    nav.pc-nav {
+        margin-top: 12px;
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        transition: 0.3s;
+    }
+
+    nav.pc-nav a {
+        text-decoration: none;
+        color: #005bac;
+        font-weight: 600;
+        padding: 6px 10px;
+        transition: 0.2s;
+    }
+
+    nav.pc-nav a:hover {
+        color: #003f7f;
+    }
+
+    /* ▼ スマホでは中央ナビ非表示 */
+    @media (max-width: 600px) {
+        nav.pc-nav {
+            display: none;
+        }
+    }
+
+    /* ▼ ハンバーガーメニュー（PC・スマホ共通） */
+    .hamburger {
+        position: absolute;
+        right: 20px;
+        top: 22px;
+        font-size: 1.8em;
+        color: #005bac;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* ▼ ハンバーガー → × 変形 */
+    .hamburger.active i {
+        transform: rotate(90deg);
+    }
+
+    /* ▼ スライドメニュー（PC・スマホ共通） */
+    #mobile-menu {
+        position: fixed;
+        right: -260px;
+        top: 0;
+        width: 240px;
+        height: 100vh;
+        background: #ffffff;
+        border-left: 1px solid #dce6f5;
+        box-shadow: -4px 0 12px rgba(0,0,0,0.15);
+        padding-top: 80px;
+        transition: 0.35s ease;
+        z-index: 30;
+    }
+
+    #mobile-menu.open {
+        right: 0;
+    }
+
+    #mobile-menu a {
+        display: block;
+        padding: 14px 20px;
+        color: #005bac;
+        text-decoration: none;
+        font-weight: 600;
+        border-bottom: 1px solid #eef3fb;
+    }
+
+    #mobile-menu a:hover {
+        background: #f0f6ff;
+    }
+
+    /* ▼ トップの背景写真（camera.jpeg） */
+    .hero {
+        width: 100%;
+        padding: 90px 20px;
+        background: url("camera.jpeg") center 15%/cover no-repeat;
+        position: relative;
+    }
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255,255,255,0.75);
+    }
+
+    .hero-content {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+        animation: fadeUp 1s ease;
+    }
+
+    .hero-content h1 {
+        font-size: 2.4em;
+        font-weight: 700;
+        color: #003f7f;
+        margin-bottom: 10px;
+    }
+
+    .hero-content p {
+        font-size: 1.2em;
+        color: #333;
+    }
+
+    /* ▼ 主なサービス背景 */
+    .service-section {
+        background: url("services-bg.jpg") center 20%/cover no-repeat;
+        position: relative;
+        padding: 60px 20px;
+        margin-top: 40px;
+    }
+
+    .service-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255,255,255,0);
+    }
+
+    .service-section > * {
+        position: relative;
+    }
+
+    .section {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+        animation: fadeUp 1s ease;
+    }
+
+    .section h2 {
+        font-size: 1.8em;
+        color: #005bac;
+        border-left: 6px solid #005bac;
+        padding: 10px 12px;
+        margin-bottom: 20px;
+        background: rgba(255,255,255,0.85);
+        display: inline-block;
+        border-radius: 6px;
+    }
+
+    .service-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+    }
+
+    .service-item {
+        background: rgba(255,255,255,0.92);
+        border: 1px solid #dce6f5;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        transition: 0.3s;
+        animation: fadeUp 1s ease;
+        text-decoration: none;
+        color: #003f7f;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    .service-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+    }
+
+    .service-item i {
+        font-size: 2.2em;
+        color: #005bac;
+        margin-bottom: 10px;
+    }
+
+    .service-item h3 {
+        color: #005bac;
+        margin-bottom: 10px;
+    }
+
+    footer {
+        background: #005bac;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 50px;
+    }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>A-style System</h1>
+
+    <!-- ▼ ハンバーガーメニュー -->
+    <div class="hamburger" id="hamburger">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- ▼ PC用中央ナビ -->
+    <nav class="pc-nav" id="pc-nav">
+        <a href="index.html">ホーム</a>
+        <a href="company.html">会社概要</a>
+        <a href="greeting.html">代表挨拶</a>
+        <a href="services-detail.html">サービス詳細</a>
+        <a href="contact.html">お問い合わせ</a>
+    </nav>
+
+    <!-- ▼ スライドメニュー -->
+    <nav id="mobile-menu">
+        <a href="index.html">ホーム</a>
+        <a href="company.html">会社概要</a>
+        <a href="greeting.html">代表挨拶</a>
+        <a href="services-detail.html">サービス詳細</a>
+        <a href="contact.html">お問い合わせ</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>現場に寄り添い、最適な環境を共に作るパートナー</h1>
+        <p>施設・企業を守る総合セキュリティソリューション</p>
+    </div>
+</section>
+
+<div class="service-section">
+    <div class="section">
+        <h2>主なサービス</h2>
+
+        <div class="service-list">
+
+            <a href="services-detail.html#camera" class="service-item">
+                <i class="fa-solid fa-video"></i>
+                <h3>防犯カメラ設置</h3>
+                <p>監視カメラ / NVR / 遠隔監視</p>
+            </a>
+
+            <a href="services-detail.html#network" class="service-item">
+                <i class="fa-solid fa-network-wired"></i>
+                <h3>ネットワーク構築</h3>
+                <p>UTM / VPN / RADIUS / Wi-Fi設計</p>
+            </a>
+
+            <a href="services-detail.html#consulting" class="service-item">
+                <i class="fa-solid fa-handshake"></i>
+                <h3>IT導入コンサル</h3>
+                <p>現場に合わせた最適なIT導入支援</p>
+            </a>
+
+            <a href="services-detail.html#pc" class="service-item">
+                <i class="fa-solid fa-laptop"></i>
+                <h3>中古PC販売・買取</h3>
+                <p>企業向けPCの再生・販売・買取</p>
+            </a>
+
+            <a href="services-detail.html#oss" class="service-item">
+                <i class="fa-solid fa-gears"></i>
+                <h3>OSS活用・自動化</h3>
+                <p>業務効率化のための自動化支援</p>
+            </a>
+
+            <a href="services-detail.html#web" class="service-item">
+                <i class="fa-solid fa-desktop"></i>
+                <h3>HP制作</h3>
+                <p>企業サイト・LP制作</p>
+            </a>
+
+        </div>
+    </div>
+</div>
+
+<footer>
+    © 2026 A-style System
+</footer>
+
+<script>
+const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobile-menu");
+const pcNav = document.getElementById("pc-nav");
+
+// ▼ ハンバーガー開閉
+hamburger.addEventListener("click", function() {
+    const isOpen = mobileMenu.classList.toggle("open");
+    hamburger.classList.toggle("active");
+
+    // PC のときだけ中央ナビを消す/戻す
+    if (window.innerWidth > 600) {
+        pcNav.style.display = isOpen ? "none" : "flex";
+    }
+});
+
+// ▼ メニュー内のリンクを押したら閉じる
+document.querySelectorAll("#mobile-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        hamburger.classList.remove("active");
+
+        if (window.innerWidth > 600) {
+            pcNav.style.display = "flex";
+        }
+    });
+});
+
+// ▼ メニュー外をクリックしたら閉じる
+document.addEventListener("click", (e) => {
+    const isClickInsideMenu = mobileMenu.contains(e.target);
+    const isClickHamburger = hamburger.contains(e.target);
+
+    if (!isClickInsideMenu && !isClickHamburger) {
+        mobileMenu.classList.remove("open");
+        hamburger.classList.remove("active");
+
+        if (window.innerWidth > 600) {
+            pcNav.style.display = "flex";
+        }
+    }
+});
+</script>
+
+</body>
+</html>

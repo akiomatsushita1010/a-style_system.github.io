@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サービス詳細 | A-style System</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+    body {
+        font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        color: #333;
+        line-height: 1.8;
+    }
+
+    header {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e5e5;
+        padding: 18px 0;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 1.9em;
+        margin: 0;
+        font-weight: 700;
+        color: #005bac;
+    }
+
+    /* ▼ PC用中央ナビ */
+    nav.pc-nav {
+        margin-top: 12px;
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        transition: 0.3s;
+    }
+
+    nav.pc-nav a {
+        text-decoration: none;
+        color: #005bac;
+        font-weight: 600;
+        padding: 6px 10px;
+        transition: 0.2s;
+    }
+
+    nav.pc-nav a:hover {
+        color: #003f7f;
+    }
+
+    /* ▼ スマホでは中央ナビ非表示 */
+    @media (max-width: 600px) {
+        nav.pc-nav {
+            display: none;
+        }
+    }
+
+    /* ▼ ハンバーガーメニュー */
+    .hamburger {
+        position: absolute;
+        right: 20px;
+        top: 22px;
+        font-size: 1.8em;
+        color: #005bac;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .hamburger.active i {
+        transform: rotate(90deg);
+    }
+
+    /* ▼ スライドメニュー */
+    #mobile-menu {
+        position: fixed;
+        right: -260px;
+        top: 0;
+        width: 240px;
+        height: 100vh;
+        background: #ffffff;
+        border-left: 1px solid #dce6f5;
+        box-shadow: -4px 0 12px rgba(0,0,0,0.15);
+        padding-top: 80px;
+        transition: 0.35s ease;
+        z-index: 30;
+    }
+
+    #mobile-menu.open {
+        right: 0;
+    }
+
+    #mobile-menu a {
+        display: block;
+        padding: 14px 20px;
+        color: #005bac;
+        text-decoration: none;
+        font-weight: 600;
+        border-bottom: 1px solid #eef3fb;
+    }
+
+    #mobile-menu a:hover {
+        background: #f0f6ff;
+    }
+
+    /* ▼ ヒーロー部分 */
+    .hero {
+        width: 100%;
+        padding: 40px 20px;
+        background: #f2f7ff;
+        border-bottom: 1px solid #dce6f5;
+        text-align: center;
+    }
+
+    .hero h2 {
+        font-size: 2.0em;
+        color: #003f7f;
+        margin: 0 0 5px 0;
+    }
+
+    .hero p {
+        margin: 0;
+        font-size: 1.05em;
+        color: #333;
+    }
+
+    .section {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .section h3 {
+        font-size: 1.7em;
+        color: #005bac;
+        border-left: 3px solid #005bac;
+        padding-left: 10px;
+        margin-bottom: 20px;
+        scroll-margin-top: 160px;
+    }
+
+    .service-box {
+        background: #ffffff;
+        padding: 25px 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        margin-bottom: 40px;
+    }
+
+    .service-box h4 {
+        font-size: 1.3em;
+        color: #003f7f;
+        margin-bottom: 10px;
+    }
+
+    .service-box ul {
+        margin: 10px 0 20px 20px;
+    }
+
+    footer {
+        background: #005bac;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 50px;
+    }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>A-style System</h1>
+
+    <!-- ▼ ハンバーガー -->
+    <div class="hamburger" id="hamburger">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- ▼ PC用中央ナビ -->
+    <nav class="pc-nav" id="pc-nav">
+        <a href="index.html">ホーム</a>
+        <a href="company.html">会社概要</a>
+        <a href="greeting.html">代表挨拶</a>
+        <a href="services-detail.html">サービス詳細</a>
+        <a href="contact.html">お問い合わせ</a>
+    </nav>
+
+    <!-- ▼ スライドメニュー -->
+    <nav id="mobile-menu">
+        <a href="index.html">ホーム</a>
+        <a href="company.html">会社概要</a>
+        <a href="greeting.html">代表挨拶</a>
+        <a href="services-detail.html">サービス詳細</a>
+        <a href="contact.html">お問い合わせ</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>サービス詳細</h2>
+    <p>A-style System が提供するサービスの詳細をご紹介します。</p>
+</section>
+
+<div class="section">
+
+    <!-- 防犯カメラ -->
+    <h3 id="camera">防犯カメラ設置</h3>
+    <div class="service-box">
+        <h4>監視カメラ / NVR / 遠隔監視</h4>
+        <p>施設・店舗・オフィスなど、環境に合わせた最適なカメラシステムをご提案します。</p>
+
+        <strong>提供内容</strong>
+        <ul>
+            <li>屋内・屋外カメラの設置工事</li>
+            <li>PoE配線・レイアウト設計</li>
+            <li>NVR（録画装置）設定</li>
+            <li>スマホ・PCからの遠隔監視設定</li>
+            <li>既存カメラの入れ替え・増設</li>
+            <li>録画期間の最適化（HDD容量設計）</li>
+        </ul>
+
+        <strong>導入メリット</strong>
+        <ul>
+            <li>侵入・盗難・トラブルの抑止</li>
+            <li>遠隔から状況確認できる安心感</li>
+            <li>証拠映像の確保によるリスク低減</li>
+        </ul>
+    </div>
+
+    <!-- ネットワーク構築 -->
+    <h3 id="network">ネットワーク構築</h3>
+    <div class="service-box">
+        <h4>UTM / VPN / RADIUS / Wi-Fi設計</h4>
+        <p>セキュリティを重視したネットワーク設計から、業務効率化を支える Wi-Fi 環境まで幅広く対応します。</p>
+
+        <strong>提供内容</strong>
+        <ul>
+            <li>法人向けルーター・UTM 設定</li>
+            <li>VPN（拠点間・テレワーク）構築</li>
+            <li>VLAN 設計・ネットワーク分離</li>
+            <li>RADIUS 認証によるセキュア Wi-Fi</li>
+            <li>企業向け Wi-Fi 設計・電波調査</li>
+            <li>既存ネットワークのトラブル改善</li>
+        </ul>
+
+        <strong>導入メリット</strong>
+        <ul>
+            <li>セキュリティ強化</li>
+            <li>社内ネットワークの安定化</li>
+            <li>テレワーク環境の整備</li>
+        </ul>
+    </div>
+
+    <!-- IT導入コンサル -->
+    <h3 id="consulting">IT導入コンサル</h3>
+    <div class="service-box">
+        <h4>現場に合わせた最適なIT導入支援</h4>
+        <p>業務改善・効率化を目的とした IT 導入をサポートします。</p>
+
+        <strong>提供内容</strong>
+        <ul>
+            <li>現場ヒアリング・課題分析</li>
+            <li>最適なITツールの選定</li>
+            <li>導入計画の作成</li>
+            <li>補助金申請サポート（IT導入補助金など）</li>
+            <li>導入後の運用サポート</li>
+            <li>社内研修・マニュアル作成</li>
+        </ul>
+
+        <strong>よくある相談</strong>
+        <ul>
+            <li>紙の業務をデジタル化したい</li>
+            <li>勤怠・予約・顧客管理を効率化したい</li>
+            <li>社内のIT担当がいない</li>
+        </ul>
+    </div>
+
+    <!-- 中古PC販売・買取 -->
+    <h3 id="pc">中古PC販売・買取</h3>
+    <div class="service-box">
+        <h4>企業向けPCの再生・販売・買取</h4>
+        <p>高品質な中古PCの販売・買取を行っています。</p>
+
+        <strong>提供内容</strong>
+        <ul>
+            <li>法人向け中古PCの販売</li>
+            <li>動作確認・クリーニング・再セットアップ</li>
+            <li>Office・セキュリティソフト導入</li>
+            <li>データ移行・初期設定</li>
+            <li>企業の大量買取にも対応</li>
+        </ul>
+
+        <strong>導入メリット</strong>
+        <ul>
+            <li>コストを抑えて高品質なPCを導入</li>
+            <li>初期設定済みで即利用可能</li>
+        </ul>
+    </div>
+
+    <!-- OSS活用・自動化 -->
+    <h3 id="oss">OSS活用・自動化</h3>
+    <div class="service-box">
+        <h4>業務効率化のための自動化支援</h4>
+        <p>OSS を活用した業務自動化やスクリプト構築を行います。</p>
+
+        <strong>提供内容</strong>
+        <ul>
+            <li>バッチ・PowerShell・Python による自動化</li>
+            <li>定型業務の自動化（ログ収集・バックアップなど）</li>
+            <li>オープンソースツールの導入</li>
+            <li>サーバ構築（Linux / Docker）</li>
+            <li>運用改善・監視設定</li>
+        </ul>
+
+        <strong>導入メリット</strong>
+        <ul>
+            <li>作業時間の削減</li>
+            <li>ヒューマンエラーの防止</li>
+            <li>運用コストの削減</li>
+        </ul>
+    </div>
+
+    <!-- HP制作 -->
+    <h3 id="web">HP制作</h3>
+    <div class="service-box">
+        <h4>企業サイト・LP制作</h4>
+        <p>スマホ対応の企業サイトや LP 制作を行います。</p>
+
+        <strong>提供内容</strong>
+        <ul>
+            <li>企業サイト・サービスサイト制作</li>
+            <li>LP（ランディングページ）制作</li>
+            <li>スマホ最適化（レスポンシブ対応）</li>
+            <li>WordPress 構築</li>
+            <li>SEO 基本対策</li>
+            <li>サーバ・ドメイン取得代行</li>
+            <li>更新代行・保守サポート</li>
+        </ul>
+
+        <strong>制作の流れ</strong>
+        <ul>
+            <li>ヒアリング</li>
+            <li>ワイヤーフレーム作成</li>
+            <li>デザイン制作</li>
+            <li>コーディング</li>
+            <li>公開・運用サポート</li>
+        </ul>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 A-style System
+</footer>
+
+<script>
+const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobile-menu");
+const pcNav = document.getElementById("pc-nav");
+
+// ▼ ハンバーガー開閉
+hamburger.addEventListener("click", function() {
+    const isOpen = mobileMenu.classList.toggle("open");
+    hamburger.classList.toggle("active");
+
+    if (window.innerWidth > 600) {
+        pcNav.style.display = isOpen ? "none" : "flex";
+    }
+});
+
+// ▼ メニュー内リンククリックで閉じる
+document.querySelectorAll("#mobile-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        hamburger.classList.remove("active");
+
+        if (window.innerWidth > 600) {
+            pcNav.style.display = "flex";
+        }
+    });
+});
+
+// ▼ メニュー外クリックで閉じる
+document.addEventListener("click", (e) => {
+    const isMenu = mobileMenu.contains(e.target);
+    const isHamburger = hamburger.contains(e.target);
+
+    if (!isMenu && !isHamburger) {
+        mobileMenu.classList.remove("open");
+        hamburger.classList.remove("active");
+
+        if (window.innerWidth > 600) {
+            pcNav.style.display = "flex";
+        }
+    }
+});
+</script>
+
+</body>
+</html>
